@@ -92,6 +92,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask, XK_t,            setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ControlMask, XK_f,            setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ControlMask, XK_m,            setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,             XK_s,            togglesticky,   {0} },
 	{ MODKEY,             XK_f,            togglefloating, {0} },
 	{ MODKEY,             XK_0,            view,           {.ui = ~0 } },
 	{ MODKEY|Mod1Mask,    XK_0,            tag,            {.ui = ~0 } },
