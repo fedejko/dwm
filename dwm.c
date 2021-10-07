@@ -286,11 +286,12 @@ struct NumTags { char limitexceeded[LENGTH(tags) > 31 ? -1 : 1]; };
 void
 holdbar(const Arg *arg)
 {
-	selmon->showbar = 1;
+	if (selmon->showbar)
+		return;
+	selmon->showbar = 2;
 	updateholdbarpos(selmon);
 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
 }
-
 
 void
 keyrelease(XEvent *e)
@@ -305,7 +306,7 @@ keyrelease(XEvent *e)
 			return;
 		}
 	}
-	if (e->xkey.keycode == XKeysymToKeycode(dpy, HOLDKEY)) {
+	if (e->xkey.keycode == XKeysymToKeycode(dpy, HOLDKEY) && selmon->showbar == 2) {
 		selmon->showbar = 0;
 		updateholdbarpos(selmon);
 		XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
@@ -1752,7 +1753,7 @@ tile(Monitor *m)
 void
 togglebar(const Arg *arg)
 {
-	selmon->showbar = !selmon->showbar;
+    selmon->showbar = (selmon->showbar == 2 ? 1 : !selmon->showbar);
 	updatebarpos(selmon);
 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
 	arrange(selmon);
