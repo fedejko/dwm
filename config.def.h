@@ -66,6 +66,8 @@ static const char *nmuttcmd[]  = { "xterm", "-e", "mutt", NULL };
 static const char *roficmd[]  = { "rofi", "-show", "run", NULL };
 static const char *rsscmd[]  = { "xterm", "-e", "rss", NULL };
 
+#include "movestack.c"
+
 static Key keys[] = {
 	/* modifier           key        function        argument */
 	{ MODKEY,             XK_Return,       spawn,          {.v = termcmd } },
@@ -78,6 +80,8 @@ static Key keys[] = {
 	{ MODKEY,             XK_b,            togglebar,      {0} },
 	{ MODKEY,             XK_Tab,          focusstack,     {.i = +1 } },
 	{ MODKEY|ShiftMask,   XK_Tab,          focusstack,     {.i = -1 } },
+    { MODKEY,             XK_Down,         movestack,      {.i = +1 } },
+    { MODKEY,             XK_Up,           movestack,      {.i = -1 } },
 	{ MODKEY,             XK_equal,        incnmaster,     {.i = +1 } },
 	{ MODKEY,             XK_minus,        incnmaster,     {.i = -1 } },
 	{ MODKEY,             XK_bracketleft,  setmfact,       {.f = -0.05} },
