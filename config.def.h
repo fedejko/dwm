@@ -116,7 +116,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,   XK_q,            quit,           {0} },
 	{ MODKEY|ShiftMask,   XK_r,            quit,           {1} }, 
 	{ 0,                  HOLDKEY,         holdbar,        {0} },
->>>>>>> holdkey
 };
 
 /* button definitions */
