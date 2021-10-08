@@ -1887,7 +1887,6 @@ void
 toggleview(const Arg *arg)
 {
 	unsigned int newtagset = selmon->tagset[selmon->seltags] ^ (arg->ui & TAGMASK);
-	int i;
     Client *const selected = selmon->sel;
 
 	// clients in the master area should be the same after we add a new tag
@@ -1910,6 +1909,7 @@ toggleview(const Arg *arg)
 	// we also want to be sure not to mutate the focus
 	focus(selected);
 
+	//int i;
 	if (newtagset) {
 		selmon->tagset[selmon->seltags] = newtagset;
 
