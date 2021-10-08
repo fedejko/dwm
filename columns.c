@@ -1,3 +1,4 @@
+void
 col(Monitor *m) {
 	unsigned int i, n, h, w, x, y,mw;
 	Client *c;
@@ -22,5 +23,3 @@ col(Monitor *m) {
 		}
 	}
 }
-
-void
