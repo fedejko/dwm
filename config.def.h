@@ -43,12 +43,14 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #include "tcl.c"
+#include "columns.c"
 static const Layout layouts[] = {
 	/* symbol   arrange function */
 	{ "[]=",    tile },    /* first entry is default */
 	{ "><>",    NULL },    /* no layout function means floating behavior */
 	{ "[M]",    monocle },
     { "|||",    tcl },
+    { "||=",    col },
 };
 
 /* key definitions */
@@ -98,6 +100,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask, XK_f,            setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ControlMask, XK_m,            setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ControlMask, XK_x,            setlayout,      {.v = &layouts[3]} },
+    { MODKEY|ControlMask, XK_c,            setlayout,      {.v = &layouts[4]} },
 	{ Mod1Mask,           XK_Return,       togglefullscr,  {0} },
 	{ MODKEY,             XK_s,            togglesticky,   {0} },
 	{ MODKEY,             XK_f,            togglefloating, {0} },
