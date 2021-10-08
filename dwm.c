@@ -1909,7 +1909,6 @@ toggleview(const Arg *arg)
 	// we also want to be sure not to mutate the focus
 	focus(selected);
 
-	//int i;
 	if (newtagset) {
 		selmon->tagset[selmon->seltags] = newtagset;
 
@@ -1918,6 +1917,7 @@ toggleview(const Arg *arg)
 			selmon->pertag->curtag = 0;
 		}
 
+        int i;
 		/* test if the user did not select the same tag */
 		if (!(newtagset & 1 << (selmon->pertag->curtag - 1))) {
 			selmon->pertag->prevtag = selmon->pertag->curtag;
