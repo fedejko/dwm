@@ -60,8 +60,13 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask,   KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|Mod1Mask,      KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,     KEY,      toggletag,      {.ui = 1 << TAG} },
-#define HOLDKEY 0xffeb // replace 0 with the keysym to activate holdbar
-
+#define HOLDKEY 0xffeb /* replace 0 with the keysym to activate holdbar
+                        * 0xffe9, Alt_L
+                        * 0xfe03, ISO_Level3_Shift (Alt_R)
+                        * 0xffeb, Windows key
+                        * 0xffe3, Control_L
+                        * 0xffe4, Control_R
+                        */
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -84,6 +89,8 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,    XK_o,            spawn,          SHCMD("check_mail") },
     { MODKEY|Mod1Mask,    XK_w,            spawn,          SHCMD("rofi_wttr -e \"$(weather)\"") },
     { MODKEY|ShiftMask,   XK_Return,       spawn,          SHCMD("cd ~/Downloads && chrome") },
+    { MODKEY|Mod1Mask,    XK_b,            spawn,          SHCMD("slstoggle") },
+    { MODKEY,             XK_l,            spawn,          SHCMD("slock") },    
 	{ MODKEY,             XK_b,            togglebar,      {0} },
 	{ MODKEY,             XK_Tab,          focusstack,     {.i = +1 } },
 	{ MODKEY|ShiftMask,   XK_Tab,          focusstack,     {.i = -1 } },
