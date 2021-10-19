@@ -42,13 +42,16 @@ static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
-#include "tcl.c"
+#include "centeredmaster.c"
 #include "columns.c"
+#include "tcl.c"
 static const Layout layouts[] = {
 	/* symbol   arrange function */
 	{ "[]=",    tile },    /* first entry is default */
     { "||=",    col },
     { "|||",    tcl },
+    { "|-|",    centeredmaster },
+    { "|F|",    centeredfloatingmaster },
 	{ "[M]",    monocle },
 	{ "><>",    NULL },    /* no layout function means floating behavior */
 };
@@ -107,8 +110,10 @@ static Key keys[] = {
 	{ Mod5Mask,           XK_1,            setlayout,      {.v = &layouts[0]} },
 	{ Mod5Mask,           XK_2,            setlayout,      {.v = &layouts[1]} },
 	{ Mod5Mask,           XK_3,            setlayout,      {.v = &layouts[2]} },
-	{ Mod5Mask,           XK_m,            setlayout,      {.v = &layouts[3]} },//monocle
-    { Mod5Mask,           XK_0,            setlayout,      {.v = &layouts[4]} },//floating
+    { Mod5Mask,           XK_4,            setlayout,      {.v = &layouts[3]} },
+	{ Mod5Mask,           XK_5,            setlayout,      {.v = &layouts[4]} },	
+	{ Mod5Mask,           XK_m,            setlayout,      {.v = &layouts[5]} },//monocle
+    { Mod5Mask,           XK_0,            setlayout,      {.v = &layouts[6]} },//floating
 	{ Mod1Mask,           XK_Return,       togglefullscr,  {0} },
 	{ Mod5Mask,           XK_Return,       togglefullscr,  {0} },
 	{ MODKEY,             XK_s,            togglesticky,   {0} },
