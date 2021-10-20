@@ -26,14 +26,24 @@ static const XPoint stickyiconbb    = {4,8};    /* defines the bottom right corn
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
+<<<<<<< HEAD
     /* xprop(1):
      *  WM_CLASS(STRING) = instance, class
      *  WM_NAME(STRING) = title
      */
-    /* class      instance title   tags mask switchtotag isfloat monitor float x,y,w,h,px */
-    { "Chromium", NULL,    NULL,   1 << 1,   1,          0,      -1,     0,0,0,0,1 },
-    { "Firefox",  NULL,    NULL,   1 << 2,   1,          0,      -1,     0,0,0,0,1 },
-    { NULL,       NULL,    "info", 0,        1,          1,      -1,     1320,34,600,206,1 },
+    /* class      instance title   tags mask switchtotag iscent isfloat monitor float x,y,w,h,px */
+    { "Chromium", NULL,    NULL,   1 << 1,   1,          0,     0,      -1,     0,0,0,0,1 },
+    { "Firefox",  NULL,    NULL,   1 << 2,   1,          0,     0,      -1,     0,0,0,0,1 },
+    { NULL,       NULL,    "info", 0,        1,          0,     1,      -1,     1320,34,600,206,1 },
+=======
+	/* xprop(1):
+	 *	WM_CLASS(STRING) = instance, class
+	 *	WM_NAME(STRING) = title
+	 */
+	/* class      instance    title       tags mask     iscentered isfloating   monitor */
+	{ "Gimp",     NULL,       NULL,       0,            0,         1,           -1 },
+	{ "Firefox",  NULL,       NULL,       1 << 8,       0,         0,           -1 },
+>>>>>>> center
 };
 
 /* layout(s) */
