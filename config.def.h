@@ -31,9 +31,10 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance title   tags mask switchtotag iscent isfloat monitor float x,y,w,h,px */
+    { NULL,       NULL,    "st",   0,        0,          1,     1,      -1,     0,0,800,500,1 },
     { "Chromium", NULL,    NULL,   1 << 1,   1,          0,     0,      -1,     0,0,0,0,1 },
     { "Firefox",  NULL,    NULL,   1 << 2,   1,          0,     0,      -1,     0,0,0,0,1 },
-    { NULL,       NULL,    "info", 0,        1,          0,     1,      -1,     1320,34,600,206,1 },
+    { NULL,       NULL,    "info", 0,        0,          0,     1,      -1,     1320,34,600,206,1 },
 };
 
 /* layout(s) */
@@ -95,6 +96,8 @@ static Key keys[] = {
     { Mod5Mask,           XK_b,            spawn,          SHCMD("slstoggle") },
   //{ MODKEY|Mod1Mask,    XK_b,            spawn,          SHCMD("slstoggle") },
     { MODKEY,             XK_l,            spawn,          SHCMD("slock") },    
+  //{ False,              XK_Print,        spawn,          SHCMD("scrot -e \'mv $f ~/screenshots/\'") },
+    { ControlMask,        XK_Print,        spawn,          SHCMD("scrot -s -e \'mv $f ~/screenshots/\'") },
     { MODKEY,             XK_b,            togglebar,      {0} },
     { MODKEY,             XK_Tab,          focusstack,     {.i = +1 } },
     { MODKEY|ShiftMask,   XK_Tab,          focusstack,     {.i = -1 } },
