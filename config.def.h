@@ -117,8 +117,8 @@ static Key keys[] = {
     { Mod5Mask,           XK_5,            setlayout,      {.v = &layouts[4]} },    
     { Mod5Mask,           XK_m,            setlayout,      {.v = &layouts[5]} },//monocle
     { Mod5Mask,           XK_0,            setlayout,      {.v = &layouts[6]} },//floating
-    { Mod1Mask,           XK_Return,       togglefullscr,  {0} },
-    { Mod5Mask,           XK_Return,       togglefullscr,  {0} },
+    { Mod1Mask,           XK_Return,       fullscreen,     {0} },
+    { Mod5Mask,           XK_Return,       fullscreen,     {0} },
     { MODKEY,             XK_s,            togglesticky,   {0} },
     { MODKEY,             XK_f,            togglefloating, {0} },
     { MODKEY,             XK_0,            view,           {.ui = ~0 } },
