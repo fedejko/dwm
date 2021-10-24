@@ -31,7 +31,8 @@ static const Rule rules[] = {
      *  WM_NAME(STRING) = title
      */
     /* class      instance title   tags mask switchtotag iscent isfloat monitor float x,y,w,h,px */
-    { NULL,       NULL,    "st",   0,        0,          1,     1,      -1,     0,0,800,500,1 },
+    { "xterm-256color", NULL, "st", 0,       0,          1,     1,      -1,     0,0,800,500,1 },
+    { NULL, NULL, "Event Tester",  0,        0,          1,     1,      -1,     0,0,100,100,1 },
     { "Chromium", NULL,    NULL,   1 << 1,   1,          0,     0,      -1,     0,0,0,0,1 },
     { "Firefox",  NULL,    NULL,   1 << 2,   1,          0,     0,      -1,     0,0,0,0,1 },
     { NULL,       NULL,    "info", 0,        0,          0,     1,      -1,     1320,34,600,206,1 },
@@ -85,59 +86,57 @@ static const char *rsscmd[]  = { "xterm", "-e", "rss", NULL };
 #include "movestack.c"
 
 static Key keys[] = {
-    /* modifier           key        function        argument */
-    { MODKEY,             XK_Return,       spawn,          {.v = termcmd } },
-    { MODKEY,             XK_space,        spawn,          {.v = roficmd } },
-    { MODKEY|Mod1Mask,    XK_m,            spawn,          {.v = nmuttcmd } },
-    { MODKEY|Mod1Mask,    XK_n,            spawn,          {.v = rsscmd } },
-    { MODKEY|Mod1Mask,    XK_o,            spawn,          SHCMD("check_mail") },
-    { MODKEY|Mod1Mask,    XK_w,            spawn,          SHCMD("rofi_wttr -e \"$(weather)\"") },
-    { MODKEY|ShiftMask,   XK_Return,       spawn,          SHCMD("cd ~/Downloads && chrome") },
-    { MODKEY|Mod1Mask,    XK_b,            spawn,          SHCMD("slstoggle") },
-    { MODKEY,             XK_l,            spawn,          SHCMD("slock") },    
-  //{ False,              XK_Print,        spawn,          SHCMD("scrot -e \'mv $f ~/screenshots/\'") },
-    { ControlMask,        XK_Print,        spawn,          SHCMD("scrot -s -e \'mv $f ~/screenshots/\'") },
-    { Mod5Mask,           XK_b,            togglebar,      {0} },
-    { MODKEY,             XK_Tab,          focusstack,     {.i = +1 } },
-    { MODKEY|ShiftMask,   XK_Tab,          focusstack,     {.i = -1 } },
-    { MODKEY,             XK_Down,         movestack,      {.i = +1 } },
-    { MODKEY,             XK_Up,           movestack,      {.i = -1 } },
-    { Mod5Mask,           XK_equal,        incnmaster,     {.i = +1 } },
-    { Mod5Mask,           XK_minus,        incnmaster,     {.i = -1 } },
-    { Mod5Mask,           XK_bracketleft,  setmfact,       {.f = -0.025} },
-    { Mod5Mask,           XK_bracketright, setmfact,       {.f = +0.025} },
-    { MODKEY,             XK_z,            zoom,           {0} },
-    { MODKEY,             XK_grave,        view,           {0} },
-    { MODKEY,             XK_e,            killclient,     {0} },
-    { Mod5Mask,           XK_1,            setlayout,      {.v = &layouts[0]} },
-    { Mod5Mask,           XK_2,            setlayout,      {.v = &layouts[1]} },
-    { Mod5Mask,           XK_3,            setlayout,      {.v = &layouts[2]} },
-    { Mod5Mask,           XK_4,            setlayout,      {.v = &layouts[3]} },
-    { Mod5Mask,           XK_5,            setlayout,      {.v = &layouts[4]} },    
-    { Mod5Mask,           XK_m,            setlayout,      {.v = &layouts[5]} },//monocle
-    { Mod5Mask,           XK_0,            setlayout,      {.v = &layouts[6]} },//floating
-    { Mod1Mask,           XK_Return,       fullscreen,     {0} },
-    { Mod5Mask,           XK_Return,       fullscreen,     {0} },
-    { MODKEY,             XK_s,            togglesticky,   {0} },
-    { MODKEY,             XK_f,            togglefloating, {0} },
-    { MODKEY,             XK_0,            view,           {.ui = ~0 } },
-    { MODKEY|Mod1Mask,    XK_0,            tag,            {.ui = ~0 } },
-    { MODKEY,             XK_comma,        focusmon,       {.i = -1 } },
-    { MODKEY,             XK_period,       focusmon,       {.i = +1 } },
-    { MODKEY|Mod1Mask,    XK_comma,        tagmon,         {.i = -1 } },
-    { MODKEY|Mod1Mask,    XK_period,       tagmon,         {.i = +1 } },
-    TAGKEYS(              XK_1,                            0)
-    TAGKEYS(              XK_2,                            1)
-    TAGKEYS(              XK_3,                            2)
-    TAGKEYS(              XK_4,                            3)
-    TAGKEYS(              XK_5,                            4)
-    TAGKEYS(              XK_6,                            5)
-    TAGKEYS(              XK_7,                            6)
-    TAGKEYS(              XK_8,                            7)
-    TAGKEYS(              XK_9,                            8)
-    { MODKEY|ShiftMask,   XK_q,            quit,           {0} },
-    { MODKEY|ShiftMask,   XK_r,            quit,           {1} }, 
-    { 0,                  HOLDKEY,         holdbar,        {0} },
+    /* modifier         key        function        argument */
+    { MODKEY,           XK_Return,       spawn,          {.v = termcmd } },
+    { MODKEY,           XK_space,        spawn,          {.v = roficmd } },
+    { MODKEY,           XK_l,            spawn,          SHCMD("slock") },    
+    { MODKEY|Mod1Mask,  XK_b,            spawn,          SHCMD("slstoggle") },
+    { MODKEY|Mod1Mask,  XK_m,            spawn,          {.v = nmuttcmd } },
+    { MODKEY|Mod1Mask,  XK_n,            spawn,          {.v = rsscmd } },
+    { MODKEY|Mod1Mask,  XK_o,            spawn,          SHCMD("check_mail") },
+    { MODKEY|Mod1Mask,  XK_w,            spawn,          SHCMD("rofi_wttr -e \"$(weather)\"") },
+    { MODKEY|ShiftMask, XK_Return,       spawn,          SHCMD("cd ~/Downloads && chrome") },
+    { ControlMask,      XK_Print,        spawn,          SHCMD("scrot -s -e \'mv $f ~/screenshots/\'") },
+    { MODKEY,           XK_b,            togglebar,      {0} },
+    { MODKEY,           XK_Tab,          focusstack,     {.i = +1 } },
+    { MODKEY|ShiftMask, XK_Tab,          focusstack,     {.i = -1 } },
+    { MODKEY,           XK_Down,         movestack,      {.i = +1 } },
+    { MODKEY,           XK_Up,           movestack,      {.i = -1 } },
+    { MODKEY,           XK_z,            zoom,           {0} },
+    { MODKEY,           XK_grave,        view,           {0} },
+    { MODKEY,           XK_e,            killclient,     {0} },
+    { MODKEY,           XK_s,            togglesticky,   {0} },
+    { MODKEY,           XK_f,            togglefloating, {0} },
+    { MODKEY,           XK_comma,        focusmon,       {.i = -1 } },
+    { MODKEY,           XK_period,       focusmon,       {.i = +1 } },
+    { Mod5Mask,         XK_equal,        incnmaster,     {.i = +1 } },
+    { Mod5Mask,         XK_minus,        incnmaster,     {.i = -1 } },
+    { Mod5Mask,         XK_bracketleft,  setmfact,       {.f = -0.02} },
+    { Mod5Mask,         XK_bracketright, setmfact,       {.f = +0.02} },
+    { Mod5Mask,         XK_1,            setlayout,      {.v = &layouts[0]} },
+    { Mod5Mask,         XK_2,            setlayout,      {.v = &layouts[1]} },
+    { Mod5Mask,         XK_3,            setlayout,      {.v = &layouts[2]} },
+    { Mod5Mask,         XK_4,            setlayout,      {.v = &layouts[3]} },
+    { Mod5Mask,         XK_5,            setlayout,      {.v = &layouts[4]} },    
+    { Mod5Mask,         XK_m,            setlayout,      {.v = &layouts[5]} },//monocle
+    { Mod5Mask,         XK_0,            setlayout,      {.v = &layouts[6]} },//floating
+    { Mod5Mask,         XK_Return,       fullscreen,     {0} },
+    { MODKEY,           XK_0,            view,           {.ui = ~0 } },
+    { MODKEY|Mod1Mask,  XK_0,            tag,            {.ui = ~0 } },
+    { MODKEY|Mod1Mask,  XK_comma,        tagmon,         {.i = -1 } },
+    { MODKEY|Mod1Mask,  XK_period,       tagmon,         {.i = +1 } },
+    TAGKEYS(            XK_1,                            0)
+    TAGKEYS(            XK_2,                            1)
+    TAGKEYS(            XK_3,                            2)
+    TAGKEYS(            XK_4,                            3)
+    TAGKEYS(            XK_5,                            4)
+    TAGKEYS(            XK_6,                            5)
+    TAGKEYS(            XK_7,                            6)
+    TAGKEYS(            XK_8,                            7)
+    TAGKEYS(            XK_9,                            8)
+    { MODKEY|ShiftMask, XK_q,            quit,           {0} },
+    { MODKEY|ShiftMask, XK_r,            quit,           {1} }, 
+    { 0,                HOLDKEY,         holdbar,        {0} },
 };
 
 /* button definitions */
