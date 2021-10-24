@@ -65,7 +65,7 @@ static const Layout layouts[] = {
     { MODKEY|ControlMask,   KEY,      toggleview,     {.ui = 1 << TAG} }, \
     { MODKEY|Mod1Mask,      KEY,      tag,            {.ui = 1 << TAG} }, \
     { MODKEY|ShiftMask,     KEY,      toggletag,      {.ui = 1 << TAG} },
-#define HOLDKEY 0xffeb /* replace 0 with the keysym to activate holdbar
+#define HOLDKEY 0xfe03 /* replace 0 with the keysym to activate holdbar
                         * 0xffe9, Alt_L
                         * 0xfe03, ISO_Level3_Shift (Alt_R)
                         * 0xffeb, Windows key
@@ -97,7 +97,7 @@ static Key keys[] = {
     { MODKEY|Mod1Mask,  XK_w,            spawn,          SHCMD("rofi_wttr -e \"$(weather)\"") },
     { MODKEY|ShiftMask, XK_Return,       spawn,          SHCMD("cd ~/Downloads && chrome") },
     { ControlMask,      XK_Print,        spawn,          SHCMD("scrot -s -e \'mv $f ~/screenshots/\'") },
-    { MODKEY,           XK_b,            togglebar,      {0} },
+    { Mod5Mask,           XK_b,            togglebar,      {0} },
     { MODKEY,           XK_Tab,          focusstack,     {.i = +1 } },
     { MODKEY|ShiftMask, XK_Tab,          focusstack,     {.i = -1 } },
     { MODKEY,           XK_Down,         movestack,      {.i = +1 } },
@@ -120,6 +120,7 @@ static Key keys[] = {
     { Mod5Mask,         XK_5,            setlayout,      {.v = &layouts[4]} },    
     { Mod5Mask,         XK_Return,       setlayout,      {.v = &layouts[5]} },//monocle
     { Mod5Mask,         XK_0,            setlayout,      {.v = &layouts[6]} },//floating
+    { Mod5Mask,         XK_backslash,    setlayout,      {0} },               //last
     { MODKEY,           XK_0,            view,           {.ui = ~0 } },
     { MODKEY|Mod1Mask,  XK_0,            tag,            {.ui = ~0 } },
     { MODKEY|Mod1Mask,  XK_comma,        tagmon,         {.i = -1 } },
